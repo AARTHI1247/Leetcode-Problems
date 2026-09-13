@@ -1,23 +1,25 @@
 class Solution {
     public int maxScore(String s) {
-        int leftzero[]=new int[s.length()];
-        int rightone[]=new int[s.length()];
-        int czero=0,c_one=0,max=Integer.MIN_VALUE;
-        for(int i=0;i<s.length();i++){
-            if(s.charAt(i)=='0'){
-                czero+=1;
-                leftzero[i]=czero;
-            } 
-            else leftzero[i]=czero;
+        int n=s.length();
+        int leftzero[]=new int[n];
+        int rightone[]=new int[n];
+        if(s.charAt(0)=='0') leftzero[0]=1;
+        if(s.charAt(n-1)=='1') rightone[n-1]=1;
+        for(int i=1;i<n;i++){
+            if(s.charAt(i)=='0') leftzero[i]=leftzero[i-1]+1;
+            else leftzero[i]=leftzero[i-1];
         }
-         for(int i=s.length()-1;i>=0;i--){
-            if(s.charAt(i)=='1'){
-                c_one+=1;
-                rightone[i]=c_one;
-            } 
-            else rightone[i]=c_one;
+        for(int i=n-2;i>=0;i--){
+            if(s.charAt(i)=='1') rightone[i]=rightone[i+1]+1;
+            else rightone[i]=rightone[i+1];
         }
-        for(int i=0;i<s.length()-1;i++) max=Math.max(max,leftzero[i]+rightone[i+1]);
+        int sum=0,max=0;
+        for(int i=0;i<n;i++) {
+            sum=0;
+            if(i==n-1) sum+=leftzero[i-1]+rightone[i];
+            else sum+=leftzero[i]+rightone[i+1];
+            max=Math.max(sum,max);
+        }
         return max;
     }
 }
