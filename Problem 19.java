@@ -11,6 +11,7 @@
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
         if(head==null)return null;
+        //reversing the linkedlist
         ListNode curr=head;
         ListNode prev=head;
         ListNode temp=head.next;
@@ -22,6 +23,7 @@ class Solution {
             prev=curr;
             curr=temp;
         }
+        // deletion of node
         ListNode newhead=prev;
         ListNode current;
         if(n==1) newhead=newhead.next;
@@ -32,7 +34,7 @@ class Solution {
         }
         current.next=current.next.next;
         }
-       
+        //again reversing the linkedlist
         ListNode newcurr=newhead;
         ListNode newprev=null;
         while(newcurr!=null){
