@@ -16,12 +16,10 @@ class Solution {
         ListNode prev=head;
         ListNode newhead=head;
         //finding mid using slow pointer
-        int mid=0;
         while(fast!=null && fast.next != null){
             fast=fast.next.next;
             prev=slow;
             slow=slow.next;
-            mid++;
         }
         //slow is in mid so connecting prev to next of slow
         prev.next=slow.next;
