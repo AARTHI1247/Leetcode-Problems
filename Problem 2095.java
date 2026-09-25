@@ -23,6 +23,7 @@ class Solution {
             slow=slow.next;
             mid++;
         }
+        //slow is in mid so connecting prev to next of slow
         prev.next=slow.next;
         return newhead;
     }
